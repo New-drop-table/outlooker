@@ -1,6 +1,5 @@
 from loader import con
 
-
 def db_init():
     cur = con.cursor()
 
