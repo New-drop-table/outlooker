@@ -2,7 +2,7 @@ from openai import OpenAI
 import os
 
 
-client = OpenAI(api_key="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")  # 🔑 Вставь сюда свой ключ
+client = OpenAI(api_key="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")  # 🔑 Вставь сюда свой ключ
 
 def summarize_email(email_text: str) -> str:
     response = client.chat.completions.create(
