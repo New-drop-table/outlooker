@@ -57,7 +57,7 @@ def is_exist(user_id) -> bool:
 def get_user_by_email(email):
     cur = con.cursor()
 
-    res = cur.execute(f"select * from users where email = {email}").fetchone()
+    res = cur.execute(f"select * from users where email = '{email}'").fetchone()
 
     return res
 
@@ -77,3 +77,6 @@ def get_users():
     print(res)
 
     return res
+
+
+print(get_users())

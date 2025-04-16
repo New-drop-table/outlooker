@@ -2,7 +2,7 @@ import pythoncom
 from win32com.client import DispatchWithEvents
 import re
 import telebot
-from ..gmailBot.db_init import *
+from db_init import *
 
 bot = telebot.TeleBot("6931652129:AAEjipnLIJI3t_bA3pezCnkxUCE52RbbqL0")
 
@@ -33,7 +33,9 @@ def start():
                     print("SENDER:", from_mail)
                     print("BODY:", main_lines)
 
-                    (user_id, email) = get_user_by_email(from_mail)
+                    res = get_user_by_email(from_mail)
+                    print(res)
+                    (user_id, _, _) = res
 
                     bot.send_message(user_id, 'You are admin of this group!', main_lines)
 
