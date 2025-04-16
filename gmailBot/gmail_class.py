@@ -1,5 +1,5 @@
-
-
+import base64
+from email.mime.text import MIMEText
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
@@ -57,6 +57,22 @@ class GmailApi:
         # print(result)
 
         return result
+
+    def send_email(self, to : str, subject : str, body_text : str):
+
+        message = MIMEText(body_text)
+        message['to'] = to
+        message['subject'] = subject
+        create_message = {'raw': base64.urlsafe_b64encode(message.as_bytes()).decode()}
+
+        request = (
+            self.service.users()
+            .messages()
+            .send(userId="me", body = create_message)
+        )
+
+        result = self._execute_request(request)
+
 
     @staticmethod
     def _execute_request(request):
