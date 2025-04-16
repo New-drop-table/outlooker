@@ -26,14 +26,7 @@ def process_message(msg):
 def main():
     client = GmailApi()
 
-    messages = client.find_all_emails()
-
-    print(messages)
-    print("\n\n")
-
-    message = client.get_email('1963e29e786f07d0')
-
-    print(parse_msg(message))
+    client.send_email("d23125128@mytudublin.ie", "Auth Code", "123")
 
 
 

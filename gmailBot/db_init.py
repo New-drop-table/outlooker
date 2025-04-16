@@ -5,6 +5,7 @@ def db_init():
     cur = con.cursor()
 
     cur.execute("CREATE TABLE users(user_id bigint primary key, email varchar(255), auth_code varchar(255))")
+    cur.execute("alter TABLE users add column is_auth bool default false")
 
     cur.close()
     con.commit()
@@ -69,6 +70,15 @@ def get_user_by_user_id(user_id):
 
     return res
 
+
+def set_is_auth(user_id, is_auth : bool):
+    cur = con.cursor()
+
+    cur.execute(f"update users set is_auth = {is_auth} where user_id = {user_id}")
+
+    cur.close()
+    con.commit()
+
 def get_users():
     cur = con.cursor()
 
@@ -78,5 +88,4 @@ def get_users():
 
     return res
 
-
-print(get_users())
+# print(get_users())

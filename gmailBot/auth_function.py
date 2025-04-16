@@ -6,7 +6,8 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from pathlib import Path
 
 # If modifying these scopes, delete the file token.json.
-SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
+SCOPES = ["https://www.googleapis.com/auth/gmail.readonly",
+          "https://www.googleapis.com/auth/gmail.send",]
 
 FILE_PATH = os.path.dirname(os.path.realpath(__file__))
 TOKEN_PATH = str(Path(FILE_PATH, "token.json"))
