@@ -13,10 +13,11 @@ def db_init():
 def insert_user(user_id):
     cur = con.cursor()
 
-    cur.execute(f"insert into users(user_id) values ({user_id})")
+    if(not is_exist(user_id)):
+        cur.execute(f"insert into users(user_id) values ({user_id})")
 
-    cur.close()
-    con.commit()
+        cur.close()
+        con.commit()
 
 
 def add_email(user_id, email : str):
@@ -45,4 +46,19 @@ def get_auth_code(user_id) -> str:
     return auth_code
 
 
+def is_exist(user_id) -> bool:
+    cur = con.cursor()
 
+    res = cur.execute(f"select exists(select 1 from users where user_id={user_id})").fetchone()[0]
+
+    return res
+
+
+def get_users():
+    cur = con.cursor()
+
+    res = cur.execute(f"select * from users").fetchall()
+
+    print(res)
+
+    return res
